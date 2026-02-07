@@ -16,6 +16,7 @@
       justify-content: center;
       background: linear-gradient(135deg, #fecdd3, #fda4af, #f87171);
       overflow: hidden;
+      overflow-y: auto;
     }
 
     /* Floating hearts */
@@ -88,6 +89,23 @@
     .photos img:hover {
       transform: scale(1.08);
     }
+
+    .close-btn {
+        position: fixed;      /* Fix to page */
+        top: 20px;
+        right: 25px;
+        font-size: 16px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: none;
+        background: #e11d48;
+        color: white;
+        cursor: pointer;
+        display: none;        /* Hidden until typing finishes */
+        box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+        z-index: 2000;        /* Above everything */
+    }
+
   </style>
 
 </head>
@@ -101,7 +119,7 @@
   </audio>
 
   <!-- Letter Card -->
-
+  <button class="close-btn" id="closeLetterBtn" onclick="closeHtml()">Close ❌</button>
   <div class="letter">
     <h1>💌 My Love</h1>
 
@@ -149,6 +167,8 @@ I love you — today, tomorrow, forever. 💖`;
       if (i < t.length) {
         document.getElementById("letterText").innerHTML += t.charAt(i);
         setTimeout(() => typeWriter(t, i + 1), 35);
+      } else {
+        document.getElementById("closeLetterBtn").style.display = "block";
       }
     }
 
@@ -165,6 +185,12 @@ I love you — today, tomorrow, forever. 💖`;
 
       setTimeout(() => heart.remove(), 6000);
     }, 400);
+
+    function closeHtml() {
+    window.location.href = "/";
+    }
+
+
   </script>
 
 </body>

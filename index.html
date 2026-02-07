@@ -28,6 +28,8 @@
       gap: 24px;
       margin-top: 20px;
       position: relative;
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     button {
@@ -218,10 +220,6 @@
   </div>
 
   <script>
-    // 👉 Media files (ensure these exist in /media folder at repo root)
-    // 👉 Media files (Vercel requires absolute paths from root)
-    // 👉 Media loader (works on Vercel + local)
-    // 👉 Media files (fixed for Vercel + local server)
     const mediaFiles = [
       "/media/photos1.jpeg",
       "/media/photos2.jpeg",
@@ -244,7 +242,7 @@
       if (i < text.length) {
         document.getElementById("typeText").innerHTML += text.charAt(i);
         setTimeout(() => typeWriter(text, i + 1), 40);
-      }
+      } 
     }
 
     function startSlideshow() {
