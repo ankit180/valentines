@@ -20,6 +20,8 @@
       overflow: hidden;
     }
 
+    /* ===== Pretty Buttons ===== */
+
     .buttons {
       display: flex;
       justify-content: center;
@@ -176,15 +178,15 @@
   <div class="ring" id="ring">💍</div>
 
   <audio id="bgMusic" loop>
-    <source src="music/love.mp3" type="audio/mpeg">
+    <source src="/music/love.mp3" type="audio/mpeg">
   </audio>
 
   <audio id="yesSound">
-    <source src="music/celebration.mp3" type="audio/mpeg">
+    <source src="/music/celebration.mp3" type="audio/mpeg">
   </audio>
 
   <audio id="proposalMusic" loop>
-    <source src="music/proposal.mp3" type="audio/mpeg">
+    <source src="/music/proposal.mp3" type="audio/mpeg">
   </audio>
 
   <div class="card">
@@ -216,14 +218,20 @@
   </div>
 
   <script>
+    // 👉 Media files (ensure these exist in /media folder at repo root)
+    // 👉 Media files (Vercel requires absolute paths from root)
+    // 👉 Media loader (works on Vercel + local)
+    // 👉 Media files (fixed for Vercel + local server)
     const mediaFiles = [
       "/media/photos1.jpeg",
       "/media/photos2.jpeg",
       "/media/photos3.jpeg",
       "/media/photos4.jpeg",
       "/media/photos5.jpeg",
-      "media/video1.mp4"
+      "/media/video1.mp4"
     ];
+
+    
 
     const letterText =
       "From the moment I met you, my world became brighter. Every smile of yours is my favorite memory. Thank you for being mine. ❤️";
@@ -251,6 +259,9 @@
         if (file.endsWith(".mp4")) {
           const video = document.createElement("video");
           video.src = file;
+          video.onerror = () => {
+            console.error("Video failed to load:", file);
+          };
           video.autoplay = true;
           video.playbackRate = 1.25;
           video.muted = true;
@@ -259,6 +270,9 @@
         } else {
           const img = document.createElement("img");
           img.src = file;
+          img.onerror = () => {
+            console.error("Image failed to load:", file);
+          };
           container.appendChild(img);
           setTimeout(next, 2500);
         }
